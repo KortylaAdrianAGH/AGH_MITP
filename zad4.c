@@ -1,22 +1,22 @@
 #include <stdio.h>
-#include<math.h>
 
 int main(){
     float a;
+    int b;
     printf("Podaj liczbe: ");
     scanf("%f", &a);
-    if (fmod(a,2)==0) {
-        printf("liczba jest parzysta\n");
-    }
-    else{
-        printf("liczba nie jest parzysta\n");
-    }
-    if(fmod(a,1)==0){
-        printf("liczba jest calkowita");
-
+    b=(int)a;
+    if (a==b){
+        printf("calkowita\n");
+        if (b%2==0){
+            printf("parzysta\n");
+        }
+        else {
+            printf("nieparzysta\n");
+        }
     }
     else {
-        printf("liczba nie jest calkowita");
+        printf("niecalkowita\n nieparzysta\n");
     }
     return(0);
 }
