@@ -9,7 +9,7 @@ int main(){
             a=b;
             b=temp;
         }
-        printf("%i elementem ciagu Fibonacciego to: %d",n,temp);
+        printf("%i elementem ciagu Fibonacciego to: %p",n,temp);
     }
     else {
         printf("%i elementem ciagu Fibonacciego to: 1",n);
