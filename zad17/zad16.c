@@ -16,22 +16,18 @@ int main(int argc,char* argv[]){
         printf("zad16\nusage: zad16 name\n\nname:\nbubble - for bubble sort\nselection - for selection sort");
         return 0;
     }
-    printf("\n");
-    printf("ile liczb chcesz posortowac?: ");
     int size,b;
     scanf("%i",&size);
     int *x=(int*)malloc(size*sizeof(int));
     for (int i=0;i<size;i++){
         scanf("%i",&x[i]);
     }
-    printf("\nPrzed posortowaniem:\n ");
+    printf("\n");
     arr(x,size);
     if(strcmp(argv[1],"bubble")==0){
-        printf("\nPo posortowaniu: ");
         bubble(x,size);
     }
     if(strcmp(argv[1],"selection")==0){
-        printf("\nPo posortowaniu: ");
         selection(x,size);
     }
     printf("\n");

@@ -1,0 +1,1 @@
+void sortstr(char[],int);

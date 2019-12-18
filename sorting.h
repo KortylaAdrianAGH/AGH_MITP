@@ -1,2 +1,2 @@
-void sortb(int [],int);
-void sorts(int [],int);
+void bubble(int [],int);
+void selection(int [],int);
