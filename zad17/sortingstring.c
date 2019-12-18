@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<string.h>
-void sortstr(char str[][],int count){
+int main(){
    int count;
    char str[100][100],temp[25];
    printf("How many strings u are going to enter?: ");
@@ -19,6 +19,6 @@ void sortstr(char str[][],int count){
       }
    printf("\nOrder of Sorted Strings:");
    for(int i=0;i<=count;i++)
-      printf(str[i]);
+      printf("%s\n",str[i]);
    return 0;
 }
