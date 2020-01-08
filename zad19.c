@@ -1,7 +1,7 @@
 #include <stdio.h>   
 int main(int argc,char* argv[]){ 
     if (argc==1){
-        printf("zad19\nusage: zad19 filename\n\nfilename:\nname - for file inside same directory\npath to the file - for files outside the directory");
+        printf("zad19\nusage: zad19 filename\n\nfilename:\nname - for file inside same directory\npath to the file - for files outside the directory\n");
         return 0;
     }
     FILE *fp; 
@@ -10,7 +10,7 @@ int main(int argc,char* argv[]){
     fp = fopen(argv[1], "r"); 
     // sprawdzanie czy program istnieje  
     if (fp == NULL){ 
-        printf("File ""%s"" does not exist! ", argv[1]); 
+        printf("File ""%s"" does not exist!\n ", argv[1]); 
         return 0; 
     } 
     for (c = fgetc(fp); c != EOF; c = fgetc(fp)){ 
@@ -23,10 +23,7 @@ int main(int argc,char* argv[]){
     if (count1>0){
         count+=1;
     }
-    else if (count>0){
-        count+=1;
-    }
-    // Close the file 
+    // zamykanie programu
     fclose(fp); 
     printf("The file %s has %d lines\n ", argv[1], count);  
     return 0; 
