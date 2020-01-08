@@ -4,32 +4,37 @@
 
 
 
-char *replaceWord(const char *s, const char *oldWord,const char *newWordW) {
+char *replaceWord(const char *s, const char *oldW,const char *newW) {
     char *result;
-    int i, count = 0;
-    int newWordWlen = strlen(newWordW);
-    int oldWordlen = strlen(oldWord);
+    int i, cnt = 0;
+    int newWlen = strlen(newW);
+    int oldWlen = strlen(oldW);
 
-    for (i = 0; s[i] != '\0'; i++){
-        if (strstr(&s[i], oldWord) == &s[i]){
-            count++;
-            i += oldWordlen - 1;
+    for (i = 0; s[i] != '\0'; i++)
+    {
+        if (strstr(&s[i], oldW) == &s[i])
+        {
+            cnt++;
+
+            i += oldWlen - 1;
         }
     }
 
-    result = (char *)malloc(i + count * (newWordWlen - oldWordlen) + 1);
+    result = (char *)malloc(i + cnt * (newWlen - oldWlen) + 1);
 
     i = 0;
-    while (*s){
-        if (strstr(s, oldWord) == s){
-            strcpy(&result[i], newWordW);
-            i += newWordWlen;
-            s += oldWordlen;
+    while (*s)
+    {
+        if (strstr(s, oldW) == s)
+        {
+            strcpy(&result[i], newW);
+            i += newWlen;
+            s += oldWlen;
         }
-        else{  //wciecia
+        else
             result[i++] = *s++;
-    	}
-	}
+    }
+
     result[i] = '\0';
     return result;
 }
@@ -43,46 +48,43 @@ int main(int argc,char *argv[]){
 	if(argc > 1){
 		char str[10000];
 		FILE *fil;
-		char char0,char1,f;
+		char ch0,ch1,f;
 		fil = fopen(argv[1],"r");
 		if (fil == NULL){
 			printf("error\n\r");
 			return 0;
 		}
 		do{
-			char0 = fgetc(fil);
-			if(char0 == '\r'){
-				char1 = fgetc(fil);
-				if(char1 == '\n'){
+			ch0 = fgetc(fil);
+			if(ch0 == '\r'){
+				ch1 = fgetc(fil);
+				if(ch1 == '\n'){
 					f = 'w';
 					break;
-				}
-				else{
+				}else{
 					f = 'm';
 					break;
 				}
-			}
-			else if(char0=='\n'){
-				 char1 = fgetc(fil);
-                                if(char1 == '\r'){
+			}else if(ch0=='\n'){
+				 ch1 = fgetc(fil);
+                                if(ch1 == '\r'){
                                         f = 'w';
                                         break;
-                                }
-								else{
+                                }else{
                                         f = 'u';
 					break;
                                 }
 			}
-		}while(char0 != EOF);
+		}while(ch0 != EOF);
 		if(argc != 3){
 			if(f == 'w'){
-				printf("%s is a windows file\n\r",argv[1]);
+				printf("%s is a windows file\n",argv[1]);
 			}else if(f=='u'){
-				printf("%s is a unix file\n\r",argv[1]);
+				printf("%s is a unix file\n",argv[1]);
 			}else if (f == 'm'){
-				printf("%s is a mac file\n\r",argv[1]);
+				printf("%s is a mac file\n",argv[1]);
 			}else{
-				printf("no endline marker\n\r",argv[1]);
+				printf("no endline marker\n",argv[1]);
 			}
 			fclose(fil);
 		}else{
@@ -97,10 +99,10 @@ int main(int argc,char *argv[]){
 			char *result;
 			if(!strcmp(argv[2],"-win")){
 				if(f!='w')result = replaceWord(string,"\n","\r\n");
-				else  printf("%s is a windows file - not converted\n",argv[1]);
+				else  printf("%s is a windows file - not converted\n\r",argv[1]);
 			}else if(!strcmp(argv[2],"-unix")){
 				if(f!='u')result = replaceWord(string,"\r\n","\n");
-				else printf("%s is a unix file - not converted\n",argv[1]);
+				else printf("%s is a unix file - not converted\n\r",argv[1]);
 			}
 			else{
 				fclose(fil);
