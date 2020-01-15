@@ -1,0 +1,25 @@
+#include <algorithm>
+#include <cstring>
+#include <iostream>
+
+using namespace std;
+
+void bubbleSort(void *tab, int const size, int const elSize, int (*compar)(void *, void *)) {
+
+    for (int i = size-1; i > 0; i--) {
+        for (int j = 0; j < i; j++) {
+            char* x = (char*)tab+(j*elSize);
+            char* y = (char*)tab+((j+1)*elSize);
+            if ((*compar)(x, y) > 0) {
+                cout << " swaping " << endl;
+                char temp[elSize];
+                memcpy(temp, x, elSize);
+                memcpy(x, y, elSize);
+                memcpy(y, temp, elSize);
+            }
+        }
+    }
+
+}
+
+

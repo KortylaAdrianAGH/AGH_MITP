@@ -1,0 +1,28 @@
+#include <algorithm>
+#include <cstring>
+#include <iostream>
+
+using namespace std;
+
+void selectionSort(void *tab, int const size, int const elSize, int (*compar)(void *, void *)) {
+
+    char *min, *current;
+    int pos;
+    for (int i = 0; i < size-1; i++) {
+        min = (char*)tab+(i*elSize);
+        current = min;
+        for (int j = i+1; j < size; j++) {
+            char* x = (char*)tab+(j*elSize);
+            if ((*compar)(min, x) > 0) {
+                min = x;
+                cout << endl;
+            }
+        }
+        char temp[elSize];
+        memcpy(temp, min, elSize);
+        memcpy(min, current, elSize);
+        memcpy(current, temp, elSize);
+    }
+
+}
+

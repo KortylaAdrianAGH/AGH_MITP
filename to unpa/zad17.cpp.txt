@@ -1,0 +1,72 @@
+#include <iostream>
+#include <cstring>
+#include "sortStr.h"
+#include <climits>
+
+using namespace std;
+
+void printUsecase() {
+    cout << "usage: zad16 -n name";
+    cout << endl << endl;
+    cout << "name: " << endl;
+    cout << "bubble    - for bubble sort" << endl;
+    cout << "selection - for selection sort" << endl;
+}
+
+int main(int argc, char* argv[]) {
+
+    if (argc != 3) {
+        printUsecase();
+        return 0;
+    } else {
+        if (strcmp(argv[1], "-n")) {
+            printUsecase();
+            return 0;
+        } else {
+            if (strcmp(argv[2], "bubble") && strcmp(argv[2], "selection")) {
+                printUsecase();
+                return 0;
+            }
+        }
+    }
+int size;
+    cout << "Podaj wymiar swojej tablicy: ";
+    cin >> size;
+
+    string stringTab[size];
+    char **tab = new char*[size];
+
+    cin.ignore(1);
+
+    cout << "Podaj elementy: " << endl;
+    for (int i = 0; i < size; i++) {
+            cout << i+1 << ": ";
+            getline(cin, stringTab[i]);
+    }
+
+    cout << "Podano: " << endl;
+    for (int i = 0; i < size; i++) {
+        cout << stringTab[i] << endl;
+        tab[i] = new char[stringTab[i].length()];
+        strcpy(tab[i], stringTab[i].c_str());
+    }
+    cout << endl << endl;
+
+    if (!strcmp(argv[2], "bubble")) {
+        cout << "Wybrano BubbleSort: " << endl;
+        bubbleSort(tab, size);
+    } else {
+        cout << "Wybrano SelectionSort: " << endl;
+        selectionSort(tab, size);
+    }
+
+    cout << "Sorted: " << endl;
+    for (int i = 0; i < size; i++) {
+        cout << tab[i] << endl;
+    }
+
+    cout << endl;
+
+    return 0;
+
+}

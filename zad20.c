@@ -4,44 +4,44 @@
 
 
 
-char *replaceWord(const char *s, const char *oldW,const char *newW) {
+char *replaceWord(const char *s, const char *oldWord,const char *newWord) {
     char *result;
-    int i, cnt = 0;
-    int newWlen = strlen(newW);
-    int oldWlen = strlen(oldW);
+    int i, count = 0;
+    int newWordlen = strlen(newWord);
+    int oldWordlen = strlen(oldWord);
 
     for (i = 0; s[i] != '\0'; i++)
     {
-        if (strstr(&s[i], oldW) == &s[i])
+        if (strstr(&s[i], oldWord) == &s[i])
         {
-            cnt++;
+            count++;
 
-            i += oldWlen - 1;
+            i += oldWordlen - 1;
         }
     }
 
-    result = (char *)malloc(i + cnt * (newWlen - oldWlen) + 1);
+    result = (char *)malloc(i + count * (newWordlen - oldWordlen) + 1);
 
     i = 0;
     while (*s)
     {
-        if (strstr(s, oldW) == s)
+        if (strstr(s, oldWord) == s)
         {
-            strcpy(&result[i], newW);
-            i += newWlen;
-            s += oldWlen;
+            strcpy(&result[i], newWord);
+            i += newWordlen;
+            s += oldWordlen;
         }
         else
             result[i++] = *s++;
     }
-
+ 
     result[i] = '\0';
     return result;
 }
 
 int main(int argc,char *argv[]){
 	if (argc == 1){
-		printf("Usage: zad20 file [-unix|-win]\n\r");
+		printf("Usage: zad20 file [-unix|-win]\n");
 		return 0;
 	}
 
@@ -99,7 +99,10 @@ int main(int argc,char *argv[]){
 			char *result;
 			if(!strcmp(argv[2],"-win")){
 				if(f!='w')result = replaceWord(string,"\n","\r\n");
-				else  printf("%s is a windows file - not converted\n\r",argv[1]);
+				else{  
+					printf("%s is a windows file - not converted\n\r",argv[1]); 
+					sprintf(result,"%s",string);
+				}
 			}else if(!strcmp(argv[2],"-unix")){
 				if(f!='u')result = replaceWord(string,"\r\n","\n");
 				else printf("%s is a unix file - not converted\n\r",argv[1]);
